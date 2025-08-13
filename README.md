@@ -1,3 +1,5 @@
+![NHS logo](static/nhs-logo.png)
+
 # NHS Data Pipeline Project
 
 This project is a data engineering pipeline designed to extract, transform, and load publicly available NHS datasets into a SQL database. The goal is to surface meaningful insights through interactive visualizations using Streamlit.
