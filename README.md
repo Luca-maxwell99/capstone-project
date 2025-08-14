@@ -22,6 +22,11 @@ This project is still in the planning phase. Possible areas of focus include:
 - Hospital activity and capacity over time
 - Mental health service usage
 
+## Mental note of blockers as I go. 
+
+I will use this section of readme to document any blockers or things I found challenging along the way, to help me write proper documentation at the end of the project. 
+- Massively wide data set from A&E CSV. with 20 + columns
+
 ## Planned Tech Stack
 
 - **Python** for ETL scripting
