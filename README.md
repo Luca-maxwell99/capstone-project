@@ -1,45 +1,72 @@
 ![NHS logo](static/nhs-logo.png)
 
-# NHS Data Pipeline Project
+# NHS A&E Data Pipeline Project
 
-This project is a data engineering pipeline designed to extract, transform, and load publicly available NHS datasets into a SQL database. The goal is to surface meaningful insights through interactive visualizations using Streamlit.
+This project is a data engineering pipeline designed to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful insights through interactive visualizations using Streamlit.
 
 ## Project Overview
 
 The pipeline will:
-- Extract data from one or more NHS sources (e.g. hospital admissions, prescriptions, GP appointments)
-- Clean and transform the data for analysis
-- Load it into a structured SQL database
-- Query the database to generate insights
-- Present findings through a Streamlit dashboard
 
-## Potential Data Themes
+Extract A&E attendance data from monthly NHS CSV datasets.
 
-This project is still in the planning phase. Possible areas of focus include:
-- Regional variation in healthcare access or outcomes
-- Trends in prescription volumes or types
-- Waiting times for treatments or appointments
-- Hospital activity and capacity over time
-- Mental health service usage
+Transform the data — cleaning, standardising formats, and selecting relevant fields for analysis.
 
-## Mental note of blockers as I go. 
+Load the cleaned dataset into a structured SQL database (PostgreSQL for development, SQLite for quick local testing).
 
-I will use this section of readme to document any blockers or things I found challenging along the way, to help me write proper documentation at the end of the project. 
-- Massively wide data set from A&E CSV. with 20 + columns
+Query the database to generate insights into A&E demand and performance.
+
+Visualise results via a Streamlit dashboard.
+
+## Chosen Dataset
+
+Source: NHS A&E Monthly Attendance and Emergency Admissions Dataset.
+
+Format: CSV (monthly data).
+
+Scope: MVP focuses solely on A&E attendances, with potential expansion to other NHS datasets later.
+
+## Key Analytics / Business Questions
+
+How have A&E attendances changed over time?
+
+Which regions or hospital trusts see the highest attendances?
+
+Are there seasonal trends in attendances (e.g., winter pressures)?
+
+What is the proportion of patients admitted vs discharged?
 
 ## Planned Tech Stack
 
-- **Python** for ETL scripting
-- **pandas / SQLAlchemy** for data manipulation and database interaction
-- **PostgreSQL / SQLite** as the target database
-- **Streamlit** for interactive data exploration
-- **Git** for version control and collaboration
+Python – ETL scripting
 
-## Goals
+pandas – data manipulation
 
-- Build a modular, reusable ETL pipeline
-- Design clear, queryable database schemas
-- Create visualizations that highlight disparities, trends, or inefficiencies
-- Make the project easy to extend or adapt for other NHS datasets
+SQLAlchemy – database interaction
 
-## Project Structure (to be finalized)
+PostgreSQL / SQLite – target databases
+
+Streamlit – interactive dashboard
+
+Git & GitHub – version control
+
+## Current Blockers / Challenges
+
+Dataset is very wide (20+ columns), requiring careful selection of relevant fields.
+
+Need to decide final database schema to balance performance and flexibility.
+
+
+## MVP Checkpoint – Friday 15th
+
+By Friday 15th, the repository will contain:
+
+Public GitHub repo.
+
+README with goal, dataset choice, questions, and plan.
+
+.env.example file.
+
+KanBan board (github project) with backlog and in-progress tasks.
+
+Short document outlining targeted insights and branch workflow.
