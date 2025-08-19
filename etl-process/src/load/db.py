@@ -2,6 +2,7 @@ import os
 from src.utils.db_engine import db_engine
 
 # This file wraps my existing database engine 
+# This file is used by load.py to connect to the database. 
 
 def get_engine(db="TARGET"):
     """Return a SQLAlchemy engine for SOURCE or TARGET database."""

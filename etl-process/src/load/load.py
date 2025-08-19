@@ -1,40 +1,26 @@
-import os
-from dotenv import load_dotenv
-import pandas as pd
-from sqlalchemy import create_engine
+from src.load.db import get_engine, get_target
+from src.load.read import read_input
 
-# Load environment variables
-load_dotenv()
+def load_data(limit: int | None = None):
+    """Load processed CSV into target database."""
+    # 1. Read data
+    df = read_input(limit)
 
-def get_engine(db='TARGET'):
-    """Create a SQLAlchemy engine for the given db (SOURCE or TARGET)."""
-    user = os.getenv(f"{db}_DB_USER")
-    password = os.getenv(f"{db}_DB_PASSWORD")
-    host = os.getenv(f"{db}_DB_HOST")
-    port = os.getenv(f"{db}_DB_PORT")
-    database = os.getenv(f"{db}_DB_NAME")
+    # 2. Get engine + target table info
+    engine = get_engine("TARGET")
+    schema, table = get_target()
 
-    engine = create_engine(f"postgresql+pg8000://{user}:{password}@{host}:{port}/{database}")
-    return engine
-
-
-def load_data():
-    """Load cleaned CSV into target database."""
-    # 1. Read cleaned CSV
-    df = pd.read_csv("data/processed/ae_data_cleaned.csv")
-
-    # 2. Connect to target database
-    engine = get_engine('TARGET')
-
-    # 3. Load DataFrame into SQL
+    # 3. Load into SQL
     df.to_sql(
-        name="ae_attendances",   # table name in SQL
+        name=table,
         con=engine,
-        if_exists="replace",     # "replace" drops & recreates, use "append" to add rows
+        schema=schema,
+        if_exists="replace",   # replace table, use "append" if you want to keep history
         index=False
     )
-    print("✅ Data successfully loaded into target database!")
 
+    print(f"Data successfully loaded into {schema}.{table}!")
 
 if __name__ == "__main__":
     load_data()
+
