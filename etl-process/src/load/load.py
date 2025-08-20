@@ -1,3 +1,8 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parents[2]))
+
 from src.load.db import get_engine, get_target
 from src.load.read import read_input
 

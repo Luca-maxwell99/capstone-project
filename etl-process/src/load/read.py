@@ -1,9 +1,14 @@
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parents[2]))
 import pandas as pd # type: ignore
 from pathlib import Path
 
 def read_input(limit: int | None = None):
     """Read cleaned CSV from processed data folder."""
-    file_path = Path("data/processed/ae_data_cleaned.csv")
+    file_path = Path(__file__).resolve().parents[2] / "data" / "processed" / "location_ae_combined.csv"
+
 
     if not file_path.exists():
         raise FileNotFoundError(f"No input found at {file_path}")
