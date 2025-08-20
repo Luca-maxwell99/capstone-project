@@ -1,40 +1,42 @@
-# app.py
-import streamlit as st
-import pandas as pd
-from sqlalchemy import create_engine
-from dotenv import load_dotenv
+import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-# Load environment variables from .env
-load_dotenv(dotenv_path="../etl-process/.env")
+import streamlit as st
+from nav_pages.home import show_home
+from nav_pages.operational import show_operational
 
 
-DB_NAME = os.getenv("TARGET_DB_NAME")
-DB_SCHEMA = os.getenv("TARGET_DB_SCHEMA")  # optional for schema-specific queries
-DB_USER = os.getenv("TARGET_DB_USER")
-DB_PASSWORD = os.getenv("TARGET_DB_PASSWORD")
-DB_HOST = os.getenv("TARGET_DB_HOST")
-DB_PORT = os.getenv("TARGET_DB_PORT")
-DB_TABLE = os.getenv("TARGET_DB_TABLE")
+def main():
+    st.set_page_config(
+        page_title="NHS A&E Dashboard",
+        page_icon="🏥",
+        layout="wide"
+    )
 
-# Create database connection
-engine = create_engine(
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-)
+    st.title("🏥 NHS A&E Performance Dashboard")
 
-# Function to load data with caching
-@st.cache_data
-def load_data(table_name):
-    query = f'SELECT * FROM {DB_SCHEMA}.{table_name} LIMIT 500'
-    df = pd.read_sql(query, engine)
-    return df
+    # Sidebar navigation
+    page = st.sidebar.selectbox(
+        "Navigate to:",
+        [
+            "Overview",
+            "Operational Pressure",
+            "Geospatial Mapping",
+            "Breach Analysis"
+        ]
+    )
 
-# Streamlit app
-st.title("Database Table Viewer")
-st.write(f"Showing data from table `{DB_SCHEMA}.{DB_TABLE}`")
+    if page == "Overview":
+        show_home()
+    elif page == "Operational Pressure":
+        show_operational()
+    elif page == "Geospatial Mapping":
+        show_geospatial()
+    
 
-data = load_data(DB_TABLE)
-st.dataframe(data)
+if __name__ == "__main__":
+    main()
 
 
 
