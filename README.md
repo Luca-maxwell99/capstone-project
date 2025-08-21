@@ -1,10 +1,24 @@
+![NHS logo](static/nhs-logo.png)
+
 # 🏥 NHS A&E Data Pipeline & Dashboard
 
-## 📌 Project Overview
+## Project Overview
 
-This project builds a modular data engineering pipeline to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful operational insights through interactive visualizations using Streamlit — helping NHS analysts, clinicians, and managers make data-driven decisions.
+This project builds a modular data engineering pipeline to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful operational insights through interactive visualisations using Streamlit — helping NHS analysts, clinicians, and managers make data-driven decisions.
 
 ---
+
+## Plan
+
+For this project, I chose to analyse A&E data from the National Health Service. After reviewing my selected dataset, I identified analytical questions that could yield valuable insights into the performance of A&E departments across the country. This process effectively guided the direction of my project.
+
+Following this, I established a Kanban board within GitHub Projects and began defining user stories to outline the necessary steps for delivering the solution. I then utilised Jupyter Notebooks to conduct exploratory data analysis, which enhanced my understanding of what I could present in my application.
+
+The project is centred around an end-to-end ETL pipeline, which I will discuss further below. Once my cleaned data was successfully loaded into my SQL database, I experimented with Streamlit to present my insights in a visually interactive manner.
+
+### Improvements
+
+I wanted to include this section here as I have reflected on my project and realised that there are many aspects I would approach differently. One significant area where I fell short was in testing. Unfortunately, I prioritised other tasks and ultimately ran out of time. In the future, I recognise the importance of adhering to best practices and will incorporate test-driven development into my work.
 
 ## Data Journey: ETL Pipeline
 
@@ -17,7 +31,7 @@ This project builds a modular data engineering pipeline to extract, transform, a
 - Removed rows with zero attendances or missing coordinates
 - Converted `period` to datetime format
 - Enriched with latitude/longitude for geospatial mapping
-- Aggregated breach metrics and standardized trust codes
+- Aggregated breach metrics and standardised trust codes
 
 ### 🔹 Load
 - Loaded into a PostgreSQL database (Pagila schema)
@@ -35,7 +49,7 @@ This project builds a modular data engineering pipeline to extract, transform, a
 
 ### Home Page
 - National % seen within 4 hours over time
-- Top 5 trusts with highest 12-hour waits
+- Top 5 trusts with the highest 12-hour waits
 - Metric cards and line charts for quick insights
 
 ### Operational Pressure
@@ -45,26 +59,26 @@ This project builds a modular data engineering pipeline to extract, transform, a
 ### Geospatial Mapping
 - Interactive map showing trust-level pressure hotspots
 - Sized and colored by 12-hour waits
-- Hover reveals trust name and attendance volume
+- Hover reveals the trust name and attendance volume
 
 ---
 
 ## Key Questions & Insights
 
-- How has A&E performance changed over time?
+- How has A&E performance changed over the last five years?
 - Which trusts are under the most operational pressure?
 - Where are the geographic hotspots for 12-hour breaches?
-- How do attendances correlate with breach rates and admissions?
 
 ---
 
 ## Testing
 
 This project has been tested under normal operating conditions ("happy path")
-- ETL pipeline runs end to end without errors
+- ETL pipeline runs end-to-end without errors
 - SQL queries return the expected results
 - Streamlit dashboard loads all pages and visuals
-- Data types behave as they should
+
+---
 
 ## Reflections & Takeaways
 
@@ -77,7 +91,7 @@ This project has been tested under normal operating conditions ("happy path")
 
 ## Future Development & Deployment
 
-### Performance Optimization
+### Performance Optimisation
 - Index key columns (`period`, `org_code`)
 - Pre-aggregate metrics in staging tables
 - Use views for repeated logic
