@@ -6,6 +6,34 @@
 
 This project builds a modular data engineering pipeline to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful operational insights through interactive visualisations using Streamlit — helping NHS analysts, clinicians, and managers make data-driven decisions.
 
+# Project Structure
+
+```
+├── etl_process
+│   ├── config
+│   │   ├── db_config.py
+│   │   └── env_config.py
+│   ├── data
+│   │   ├── output
+│   │   ├── processed
+│   │   └── raw
+│   ├── pyproject.toml
+│   ├── requirements-setup.txt
+│   ├── requirements.txt
+│   ├── scripts
+│   │   ├── __init__.py
+│   │   └── run_etl.py
+│   ├── src
+│       ├── extract
+│       ├── load
+│       ├── sql
+│       ├── transform
+└── streamlit
+    ├── app.py
+    └── nav_pages
+        
+
+```
 ---
 
 ## Plan
@@ -16,28 +44,37 @@ Following this, I established a Kanban board within GitHub Projects and began de
 
 The project is centred around an end-to-end ETL pipeline, which I will discuss further below. Once my cleaned data was successfully loaded into my SQL database, I experimented with Streamlit to present my insights in a visually interactive manner.
 
+![Kanban Board](static/Kanban_screenshot.png)
+
 ### Improvements
 
 I wanted to include this section here as I have reflected on my project and realised that there are many aspects I would approach differently. One significant area where I fell short was in testing. Unfortunately, I prioritised other tasks and ultimately ran out of time. In the future, I recognise the importance of adhering to best practices and will incorporate test-driven development into my work.
 
+## Key Questions & Insights
+
+- How has A&E performance changed over the last five years?
+- Which trusts are under the most operational pressure?
+- Where are the geographic hotspots for 12-hour breaches?
+
 ## Data Journey: ETL Pipeline
 
-### 🔹 Extract
+### Extract
 - Raw CSVs downloaded from [NHS England](https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/)
 - Monthly trust-level data on attendances, breaches, 12-hour waits, and emergency admissions
+- In the future or if I had more time, I would love to automate this process and write an extract script to grab data from NHS England on a monthly basis
 
-### 🔹 Transform
+### Transform
 - Cleaned and filtered using pandas
 - Removed rows with zero attendances or missing coordinates
 - Converted `period` to datetime format
 - Enriched with latitude/longitude for geospatial mapping
 - Aggregated breach metrics and standardised trust codes
 
-### 🔹 Load
+### Load
 - Loaded into a PostgreSQL database (Pagila schema)
 - Queried via modular SQL scripts for performance and maintainability
 
-### 🔹 Visualize
+### Visualize
 - Streamlit dashboard with multi-page layout:
   - National trends
   - Trust-level breach analysis
@@ -63,11 +100,10 @@ I wanted to include this section here as I have reflected on my project and real
 
 ---
 
-## Key Questions & Insights
-
-- How has A&E performance changed over the last five years?
-- Which trusts are under the most operational pressure?
-- Where are the geographic hotspots for 12-hour breaches?
+## How to use the Dashboard
+- Lauch the app
+- Use sidebar to navigate between pages
+- Hover over charts and maps for trust info
 
 ---
 
