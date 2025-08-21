@@ -29,7 +29,7 @@ def show_operational():
         compare performance between trusts, and explore trust-level trends over time.
     """
     # Page title
-    st.title("🏥 NHS A&E Performance Dashboard")
+    
     st.header("Operational Pressure")
 
     # Load operational dataset
