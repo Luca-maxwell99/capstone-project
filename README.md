@@ -115,7 +115,7 @@ This project has been tested under normal operating conditions ("happy path")
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/nhs-ae-dashboard
+git clone https://github.com/your-username/capstone-project
 
 # Install dependencies
 pip install -r requirements.txt
