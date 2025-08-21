@@ -13,3 +13,17 @@ def load_operational_data():
     # Execute query and return DataFrame
     df = pd.read_sql(query, engine)
     return df
+
+def load_geospatial_data():
+    engine = db_engine(db="TARGET")
+
+    sql_path = Path("etl_process/src/sql/geospatial.sql")
+    query = sql_path.read_text()
+
+    df = pd.read_sql(query, engine)
+
+    # Optional: convert period to datetime
+    if not pd.api.types.is_datetime64_any_dtype(df["period"]):
+        df["period"] = pd.to_datetime(df["period"])
+
+    return df

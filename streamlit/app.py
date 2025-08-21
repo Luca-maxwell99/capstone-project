@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import streamlit as st
 from nav_pages.home import show_home
 from nav_pages.operational import show_operational
-# from nav_pages.geospatial import show_geospatial
+from nav_pages.geospatial import show_geospatial
 
 
 
