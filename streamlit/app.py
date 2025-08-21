@@ -5,6 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import streamlit as st
 from nav_pages.home import show_home
 from nav_pages.operational import show_operational
+# from nav_pages.geospatial import show_geospatial
+
 
 
 def main():
@@ -22,8 +24,7 @@ def main():
         [
             "Overview",
             "Operational Pressure",
-            "Geospatial Mapping",
-            "Breach Analysis"
+            "Geospatial Mapping"
         ]
     )
 
@@ -37,6 +38,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
