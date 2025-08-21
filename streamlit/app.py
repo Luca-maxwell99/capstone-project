@@ -19,8 +19,9 @@ def main():
     
 
     # Sidebar navigation
+    st.sidebar.header("Navigation")
     page = st.sidebar.selectbox(
-        "Navigate to:",
+        "Choose a view to explore A&E performance:",
         [
             "Overview",
             "Operational Pressure",

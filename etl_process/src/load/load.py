@@ -20,7 +20,7 @@ def load_data(limit: int | None = None):
         name=table,
         con=engine,
         schema=schema,
-        if_exists="replace",   # replace table, use "append" if you want to keep history
+        if_exists="replace",   # replace table
         index=False
     )
 
