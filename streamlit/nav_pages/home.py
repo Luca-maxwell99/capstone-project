@@ -18,7 +18,6 @@ def show_home():
     st.set_page_config(page_title="NHS Dashboard Overview", layout="wide")
 
     # --- Header ---
-    
     st.markdown("Explore A&E performance across NHS trusts — from breach rates to extreme delays and geospatial hotspots.")
 
     # --- Load Data ---
@@ -46,12 +45,19 @@ def show_home():
     st.plotly_chart(fig, use_container_width=True)
 
     # --- Trusts to Watch ---
-    st.subheader("🚨 Trusts to Watch — 12-Hour Breaches")
+    st.subheader("Trusts to Watch — 12-Hour Breaches")
 
     if "org_name" in trust_df.columns and "patients_12hr_wait" in trust_df.columns:
         top_trusts = trust_df.sort_values("patients_12hr_wait", ascending=False).head(5)
 
-        for _, row in top_trusts.iterrows():
-            st.markdown(f"**{row['org_name']}** — {row['patients_12hr_wait']:,} patients waited over 12 hours")
+        st.markdown("These trusts reported the highest number of patients waiting over 12 hours in the latest period:")
+
+        cols = st.columns(len(top_trusts))
+
+        for col, (_, row) in zip(cols, top_trusts.iterrows()):
+            col.metric(
+                label=f"{row['org_name']}",
+                value=f"{row['patients_12hr_wait']:,}"
+            )
     else:
         st.error("Trust-level data is missing required columns. Please check your SQL query or data source.")
