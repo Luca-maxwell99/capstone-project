@@ -16,7 +16,7 @@ def main():
         layout="wide"
     )
 
-    st.title("🏥 NHS A&E Performance Dashboard")
+    
 
     # Sidebar navigation
     page = st.sidebar.selectbox(

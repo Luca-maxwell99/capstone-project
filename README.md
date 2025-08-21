@@ -1,72 +1,126 @@
-![NHS logo](static/nhs-logo.png)
+# 🏥 NHS A&E Data Pipeline & Dashboard
 
-# NHS A&E Data Pipeline Project
+## 📌 Project Overview
 
-This project is a data engineering pipeline designed to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful insights through interactive visualizations using Streamlit.
+This project builds a modular data engineering pipeline to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful operational insights through interactive visualizations using Streamlit — helping NHS analysts, clinicians, and managers make data-driven decisions.
 
-## Project Overview
+---
 
-The pipeline will:
+## Data Journey: ETL Pipeline
 
-Extract A&E attendance data from monthly NHS CSV datasets.
+### 🔹 Extract
+- Raw CSVs downloaded from [NHS England](https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/)
+- Monthly trust-level data on attendances, breaches, 12-hour waits, and emergency admissions
 
-Transform the data — cleaning, standardising formats, and selecting relevant fields for analysis.
+### 🔹 Transform
+- Cleaned and filtered using pandas
+- Removed rows with zero attendances or missing coordinates
+- Converted `period` to datetime format
+- Enriched with latitude/longitude for geospatial mapping
+- Aggregated breach metrics and standardized trust codes
 
-Load the cleaned dataset into a structured SQL database (PostgreSQL for development, SQLite for quick local testing).
+### 🔹 Load
+- Loaded into a PostgreSQL database (Pagila schema)
+- Queried via modular SQL scripts for performance and maintainability
 
-Query the database to generate insights into A&E demand and performance.
+### 🔹 Visualize
+- Streamlit dashboard with multi-page layout:
+  - National trends
+  - Trust-level breach analysis
+  - Geospatial pressure hotspots
 
-Visualise results via a Streamlit dashboard.
+---
 
-## Chosen Dataset
+## Dashboard Features
 
-Source: NHS A&E Monthly Attendance and Emergency Admissions Dataset.
+### Home Page
+- National % seen within 4 hours over time
+- Top 5 trusts with highest 12-hour waits
+- Metric cards and line charts for quick insights
 
-Format: CSV (monthly data).
+### Operational Pressure
+- KPI breakdowns by present month (July 2025)
+- Breach rate analysis and emergency admission trends
 
-Scope: MVP focuses solely on A&E attendances, with potential expansion to other NHS datasets later.
+### Geospatial Mapping
+- Interactive map showing trust-level pressure hotspots
+- Sized and colored by 12-hour waits
+- Hover reveals trust name and attendance volume
 
-## Key Analytics / Business Questions
+---
 
-How have A&E attendances changed over time?
+## Key Questions & Insights
 
-Which regions or hospital trusts see the highest attendances?
+- How has A&E performance changed over time?
+- Which trusts are under the most operational pressure?
+- Where are the geographic hotspots for 12-hour breaches?
+- How do attendances correlate with breach rates and admissions?
 
-Are there seasonal trends in attendances (e.g., winter pressures)?
+---
 
-What is the proportion of patients admitted vs discharged?
+## Testing
 
-## Planned Tech Stack
+This project has been tested under normal operating conditions ("happy path")
+- ETL pipeline runs end to end without errors
+- SQL queries return the expected results
+- Streamlit dashboard loads all pages and visuals
+- Data types behave as they should
 
-Python – ETL scripting
+## Reflections & Takeaways
 
-pandas – data manipulation
+- Refactored Streamlit into a modular, multi-page app
+- Debugged SQL query paths and ensured robust data loading
+- Designed visuals that are both informative and intuitive
+- Learned to balance technical depth with user experience
 
-SQLAlchemy – database interaction
+---
 
-PostgreSQL / SQLite – target databases
+## Future Development & Deployment
 
-Streamlit – interactive dashboard
+### Performance Optimization
+- Index key columns (`period`, `org_code`)
+- Pre-aggregate metrics in staging tables
+- Use views for repeated logic
 
-Git & GitHub – version control
+### Error Handling & Logging
+- Add try/except blocks around SQL execution
+- Log failed queries or empty datasets
+- Use Streamlit’s `st.warning()` and `st.error()` for user feedback
 
-## Current Blockers / Challenges
+### Security & Privacy
+- No patient-level data used
+- Trust-level metrics only
+- DB access restricted via credentials and roles
 
-Dataset is very wide (20+ columns), requiring careful selection of relevant fields.
+### Cloud Deployment (AWS)
+- **S3**: Store raw and transformed data
+- **RDS**: Host PostgreSQL database
+- **Lambda**: Automate ETL jobs
+- **CloudWatch**: Monitor logs and alerts
+- **EC2 or Streamlit Cloud**: Host dashboard
 
-Need to decide final database schema to balance performance and flexibility.
+---
 
+## Tech Stack
 
-## MVP Checkpoint – Friday 15th
+- **Python**: pandas, pathlib, SQLAlchemy
+- **SQL**: PostgreSQL, modular queries
+- **Streamlit**: interactive dashboard
+- **Plotly**: geospatial visualizations
+- **Git & GitHub**: version control
 
-By Friday 15th, the repository will contain:
+---
 
-Public GitHub repo.
+## Setup Instructions
 
-README with goal, dataset choice, questions, and plan.
+```bash
+# Clone the repo
+git clone https://github.com/your-username/nhs-ae-dashboard
 
-.env.example file.
+# Install dependencies
+pip install -r requirements.txt
 
-KanBan board (github project) with backlog and in-progress tasks.
+# Run the app
+streamlit run streamlit/app.py
+```
 
-Short document outlining targeted insights and branch workflow.
