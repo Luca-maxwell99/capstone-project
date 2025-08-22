@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-This project builds a modular data engineering pipeline to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful operational insights through interactive visualisations using Streamlit — helping NHS analysts, clinicians, and managers make data-driven decisions.
+This project builds a modular data engineering pipeline to extract, transform, and load publicly available NHS Accident & Emergency (A&E) datasets into a SQL database. The goal is to surface meaningful operational insights through interactive visualisations using Streamlit, helping NHS analysts, clinicians, and managers make data-driven decisions.
 
 # Project Structure
 
@@ -109,7 +109,7 @@ I wanted to include this section here as I have reflected on my project and real
 
 ## Testing
 
-This project has been tested under normal operating conditions ("happy path")
+This project has been tested under normal operating conditions
 - ETL pipeline runs end-to-end without errors
 - SQL queries return the expected results
 - Streamlit dashboard loads all pages and visuals
@@ -127,10 +127,8 @@ This project has been tested under normal operating conditions ("happy path")
 
 ## Future Development & Deployment
 
-### Performance Optimisation
-- Index key columns (`period`, `org_code`)
-- Pre-aggregate metrics in staging tables
-- Use views for repeated logic
+### Testing
+- In the future I would use test driven development, to ensure I adhere to best practices
 
 ### Error Handling & Logging
 - Add try/except blocks around SQL execution
@@ -143,21 +141,21 @@ This project has been tested under normal operating conditions ("happy path")
 - DB access restricted via credentials and roles
 
 ### Cloud Deployment (AWS)
-- **S3**: Store raw and transformed data
-- **RDS**: Host PostgreSQL database
-- **Lambda**: Automate ETL jobs
-- **CloudWatch**: Monitor logs and alerts
-- **EC2 or Streamlit Cloud**: Host dashboard
+- S3: Store raw and transformed data
+- RDS: Host PostgreSQL database
+- Lambda: Automate ETL jobs
+- CloudWatch: Monitor logs and alerts
+- EC2: Host dashboard
 
 ---
 
 ## Tech Stack
 
-- **Python**: pandas, pathlib, SQLAlchemy
-- **SQL**: PostgreSQL, modular queries
-- **Streamlit**: interactive dashboard
-- **Plotly**: geospatial visualizations
-- **Git & GitHub**: version control
+- Python: pandas, pathlib, SQLAlchemy
+- SQL: PostgreSQL, modular queries
+- Streamlit: interactive dashboard
+- Plotly: geospatial visualizations
+- Git & GitHub: version control
 
 ---
 
