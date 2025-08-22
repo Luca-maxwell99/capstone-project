@@ -160,6 +160,13 @@ I wanted to include this section here as I have reflected on my project and real
 # Clone the repo
 git clone https://github.com/your-username/capstone-project
 
+# Set up virtual env
+python(3 for mac) -m venv venv
+# Mac users
+source venv/bin/activate
+# Windows users  
+venv\Scripts\activate
+
 # Install dependencies
 pip install -r requirements.txt
 
