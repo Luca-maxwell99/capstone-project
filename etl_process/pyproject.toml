@@ -20,11 +20,11 @@ dynamic = ["dependencies"]
 Homepage = "https://github.com/de-2506-a/etl-walkthrough"
 
 [project.scripts]
-run_etl = "scripts.run_etl:main"
+run_etl = "src.scripts.run_etl:main"
 run_tests = "tests.run_tests:main"
 
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["src"]
 include = ["*"]
 
 [tool.setuptools.dynamic]
