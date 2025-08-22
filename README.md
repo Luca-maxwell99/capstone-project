@@ -107,15 +107,6 @@ I wanted to include this section here as I have reflected on my project and real
 
 ---
 
-## Testing
-
-This project has been tested under normal operating conditions
-- ETL pipeline runs end-to-end without errors
-- SQL queries return the expected results
-- Streamlit dashboard loads all pages and visuals
-
----
-
 ## Reflections & Takeaways
 
 - Refactored Streamlit into a modular, multi-page app
@@ -128,7 +119,7 @@ This project has been tested under normal operating conditions
 ## Future Development & Deployment
 
 ### Testing
-- In the future I would use test driven development, to ensure I adhere to best practices
+- In the future, I would use test-driven development to ensure I adhere to best practices
 
 ### Error Handling & Logging
 - Add try/except blocks around SQL execution
