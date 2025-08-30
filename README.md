@@ -1,4 +1,4 @@
-![NHS logo](static/nhs-logo.png)
+![NHS logo](static/nhs_dashboard.png)
 
 # 🏥 NHS A&E Data Pipeline & Dashboard
 
