@@ -20,14 +20,14 @@ This project builds a modular data engineering pipeline to extract, transform, a
 │   ├── pyproject.toml
 │   ├── requirements-setup.txt
 │   ├── requirements.txt
-│   ├── scripts
-│   │   ├── __init__.py
-│   │   └── run_etl.py
 │   ├── src
 │       ├── extract
 │       ├── load
 │       ├── sql
 │       ├── transform
+│    ── scripts
+│   │   ├── __init__.py
+│   │   └── run_etl.py
 └── streamlit
     ├── app.py
     └── nav_pages
@@ -79,6 +79,10 @@ I wanted to include this section here as I have reflected on my project and real
   - National trends
   - Trust-level breach analysis
   - Geospatial pressure hotspots
+ 
+### run_etl Successful
+
+![CLI of run_etl](static/etl_run.png)
 
 ---
 
@@ -155,6 +159,13 @@ I wanted to include this section here as I have reflected on my project and real
 ```bash
 # Clone the repo
 git clone https://github.com/your-username/capstone-project
+
+# Set up virtual env
+python(3 for mac) -m venv venv
+# Mac users
+source venv/bin/activate
+# Windows users  
+venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
